@@ -2,15 +2,31 @@ import React, { Fragment } from 'react'
 import Header from './Header'
 import Show from './Show'
 import Empty from './Empty'
+import useVisualMode from "hooks/useVisualMode"
+import Form from './Form'
 
 import 'components/Appointment/styles.scss'
+// mode constants
+const EMPTY = "EMPTY";
+const SHOW = "SHOW";
+const CREATE = "CREATE"
 
-export default function Appointment(props) {
+export default function Appointment(props) { //useVisualCode initializes with the strings 
+
+  const { mode, transition, back } = useVisualMode(
+    props.interview ? SHOW : EMPTY //how does SHOW AND EMPTY HAPPEN 
+  );
+
   return (
     <Fragment>
       <article className="appointment">
         <Header time={props.time} />
-        {props.interview ? <Show student={props.interview.student} interviewer={props.interview.interviewer}/> : <Empty />}
+        {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+        
+        {mode === SHOW && <Show student={props.interview.student} interviewer={props.interview.interviewer} />}
+        
+        {mode === CREATE && <Form interviewers={[]} onCancel={back}/>}
+
       </article>
     </Fragment>
   )

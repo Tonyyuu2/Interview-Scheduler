@@ -14,7 +14,7 @@ export default function Form(props) {
 
   const cancel = () => {
     reset()
-    props.cancel()
+    props.onCancel()
 
   }
 
