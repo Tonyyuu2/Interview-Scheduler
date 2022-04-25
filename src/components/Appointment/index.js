@@ -25,7 +25,7 @@ export default function Appointment(props) { //useVisualCode initializes with th
         
         {mode === SHOW && <Show student={props.interview.student} interviewer={props.interview.interviewer} />}
         
-        {mode === CREATE && <Form interviewers={[]} onCancel={back}/>}
+        {mode === CREATE && <Form interviewers={props.interviewers} onCancel={back}/>}
 
       </article>
     </Fragment>

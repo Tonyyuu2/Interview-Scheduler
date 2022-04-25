@@ -57,7 +57,7 @@ export function getInterviewersForDay(state, day) {
     
     return  state.interviewers[interviewerID]
   })
- 
+
   
   // console.log('stateAppointments :', stateAppointments);
   return stateInterviewers;

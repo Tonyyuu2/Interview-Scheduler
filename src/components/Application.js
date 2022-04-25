@@ -4,7 +4,7 @@ import axios from "axios";
 
 import "components/Application.scss";
 import Appointment from "components/Appointment"
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay} from "helpers/selectors";
 
 
 export default function Application(props) {
@@ -17,18 +17,20 @@ export default function Application(props) {
   });
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-  const setDay = day => setState({ ...state, day });
-  
+  const setDay = day => setState({ ...state, day }); //how does day change <---
+  // THIS THIS THIS THIS WHEN DOES A PAGE RE RENDER 
 
   const appointmentList = dailyAppointments.map((appointment) => {
+    const interviewers = getInterviewersForDay(state, state.day)
     const interview = getInterview(state, appointment.interview);
     
     return (
       <Appointment 
-        key={appointment.id} 
+        key={appointment.id}
         id={appointment.id}
         time={appointment.id}
         interview={interview}
+        interviewers={interviewers}
         />
     )
   })
@@ -42,7 +44,7 @@ export default function Application(props) {
     console.log('all :', all);
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}))
     })
-    }, [])
+    }, []);
 
 
   return (
@@ -67,7 +69,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {appointmentList}
+        {appointmentList} {/* component */}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
