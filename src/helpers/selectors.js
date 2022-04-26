@@ -22,7 +22,6 @@ export function getAppointmentsForDay(state, day) {
 }
 
 export function getInterview(state, interview) {
-console.log('interview :', interview);
 // console.log('state----- :', state);
 // console.log('interview :', interview);
 

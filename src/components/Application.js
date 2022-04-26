@@ -16,6 +16,43 @@ export default function Application(props) {
     interviewers: {}
   });
 
+  function bookInterview(id, interview) {
+    console.log("--------", id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    return axios.put(`/api/appointments/${id}`, {interview}).then((response) => {
+      setState({
+        ...state, appointments
+      })
+    }).catch(e => {
+      console.log("error", e)
+    })
+  }
+
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    return axios.delete(`/api/appointments/${id}`).then((response) => {
+      console.log('DELETING', response);
+      setState({
+        ...state, appointments
+      })
+    })
+  }
+
+
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const setDay = day => setState({ ...state, day }); //how does day change <---
   // THIS THIS THIS THIS WHEN DOES A PAGE RE RENDER 
@@ -28,9 +65,11 @@ export default function Application(props) {
       <Appointment 
         key={appointment.id}
         id={appointment.id}
-        time={appointment.id}
+        time={appointment.time}
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
         />
     )
   })
@@ -41,7 +80,6 @@ export default function Application(props) {
       axios.get("/api/appointments"),
       axios.get("/api/interviewers")
     ]).then((all) => {
-    console.log('all :', all);
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}))
     })
     }, []);
