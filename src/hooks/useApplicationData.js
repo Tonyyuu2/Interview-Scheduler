@@ -20,9 +20,11 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
+    const days = spotSpotter(state.days, appointments)
+    
     return axios.put(`/api/appointments/${id}`, {interview}).then((response) => {
       setState({
-        ...state, appointments
+        ...state, appointments, days
       })
     })
   }
@@ -36,10 +38,12 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
+    const days = spotSpotter(state.days, appointments)
+
     return axios.delete(`/api/appointments/${id}`).then((response) => {
       console.log('DELETING', response);
       setState({
-        ...state, appointments
+        ...state, appointments, days
       })
     })
   }
@@ -57,5 +61,23 @@ export default function useApplicationData() {
     })
     }, []);
 
-  return { state, setDay, bookInterview, cancelInterview };
+    function spotSpotter(days, appointments) {
+
+    const daysArray = days.map(day => { //pinpoints the day object
+
+      let counter = 0;
+
+      const appointmentsArray = day.appointments;
+
+      for (const number of appointmentsArray) {
+        if (!appointments[number].interview) {
+          counter++
+        }
+      }
+      return {...day, spots: counter} //array of days holds this object for each day 
+    })
+    return daysArray
+    }
+
+  return { state, setDay, bookInterview, cancelInterview};
 }
