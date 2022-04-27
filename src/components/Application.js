@@ -1,6 +1,6 @@
 import React from "react";
-import DayList from "./DayList";
 
+import DayList from "./DayList";
 import "components/Application.scss";
 import Appointment from "components/Appointment";
 import {
@@ -56,3 +56,4 @@ export default function Application(props) {
     </main>
   );
 }
+
