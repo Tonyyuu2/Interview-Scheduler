@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function useApplicationData() {
@@ -10,7 +10,6 @@ export default function useApplicationData() {
   });
 
   function bookInterview(id, interview) {
-    console.log("--------", id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -44,7 +43,6 @@ export default function useApplicationData() {
     const days = spotSpotter(state.days, appointments);
 
     return axios.delete(`/api/appointments/${id}`).then((response) => {
-      console.log("DELETING", response);
       setState({
         ...state,
         appointments,
