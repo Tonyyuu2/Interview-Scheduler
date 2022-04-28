@@ -70,3 +70,8 @@ npm run storybook
 - Cypress
 - Testing Library
 
+# Screenshots
+
+!["Application-Form"](https://github.com/Tonyyuu2/Interview-Scheduler/blob/master/docs/Application-form.png?raw=true)
+
+!["Adding Own Data"](https://github.com/Tonyyuu2/Interview-Scheduler/blob/master/docs/Add%20own%20data.png?raw=true)
