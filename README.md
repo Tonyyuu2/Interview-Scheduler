@@ -72,6 +72,6 @@ npm run storybook
 
 # Screenshots
 
-!["Application-Form"](https://github.com/Tonyyuu2/Interview-Scheduler/blob/master/docs/Application-form.png?raw=true)
+!["Application-Form"](https://github.com/Tonyyuu2/Interview-Scheduler/blob/master/docs/Application%20Form.png?raw=true)
 
-!["Adding Own Data"](https://github.com/Tonyyuu2/Interview-Scheduler/blob/master/docs/Add%20own%20data.png?raw=true)
+!["Adding Own Data"](https://github.com/Tonyyuu2/Interview-Scheduler/blob/master/docs/Adding%20Own%20Data.png?raw=true)
