@@ -3,20 +3,20 @@ import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
 export default function Form(props) {
-  const [student, setStudent] = useState(props.student || ""); //short
-  const [interviewer, setInterviewer] = useState(props.interviewer || null); //short
+  const [student, setStudent] = useState(props.student || "");
+  const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
-
+  //function that resets the student state and interviewer state
   const reset = () => {
     setStudent("");
     setInterviewer(null);
   };
-
+  //function that calls reset() and back()
   const cancel = () => {
     reset();
     props.onCancel();
   };
-
+  //guard clause to check if student input is null or interviewer is not clicked
   function validate() {
     if (student === "") {
       setError("Student name cannot be blank");
@@ -27,6 +27,7 @@ export default function Form(props) {
       return;
     }
     setError("");
+    //saves the selected interviewer and event.target.value of student
     props.onSave(student, interviewer);
   }
 

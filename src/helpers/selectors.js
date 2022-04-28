@@ -1,31 +1,20 @@
-
-
 export function getAppointmentsForDay(state, day) {
   const daysObject = state.days.find((dai) => dai.name === day);
-  // console.log('daysObject :', daysObject);
 
   if (!daysObject) {
     return [];
   }
 
   const daysAppointment = daysObject.appointments;
-  // console.log('daysAppointment :', daysAppointment);
 
   const stateAppointments = daysAppointment.map((appointmentID) => {
     return state.appointments[appointmentID];
   });
 
-  // console.log('stateAppointments :', stateAppointments);
   return stateAppointments;
-}
+}//function that returns an array of objects of all the appointments for a certain weekday
 
 export function getInterview(state, interview) {
-  // console.log('state----- :', state);
-  // console.log('interview :', interview);
-
-  // const example = {...interview, interviewer: state.interviewers}
-  // console.log('example :', example);
-
   if (interview === null) {
     return null;
   }
@@ -34,30 +23,22 @@ export function getInterview(state, interview) {
     student: interview.student,
     interviewer: state.interviewers[interview.interviewer],
   };
-  // console.log('interviewz :', interviewz);
 
   return interviewz;
-}
+}//function that creates a new object that takes in the student and interviewer ID
 
 export function getInterviewersForDay(state, day) {
   const daysObject = state.days.find((dai) => dai.name === day);
-
-  // console.log('daysObject :', daysObject);
 
   if (!daysObject) {
     return [];
   }
 
   const daysInterviewers = daysObject.interviewers;
-  // console.log('daysAppointment :', daysAppointment);
 
   const stateInterviewers = daysInterviewers.map((interviewerID) => {
     return state.interviewers[interviewerID];
   });
 
-  // console.log('stateAppointments :', stateAppointments);
   return stateInterviewers;
-}
-
-
-
+}//function that returns an array of objects of all the interviewers for a certain weekday

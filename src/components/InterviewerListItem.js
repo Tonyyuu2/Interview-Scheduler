@@ -8,6 +8,7 @@ export default function InterviewerListItem(props) {
     "interviewers__item--selected": props.selected,
   });
 
+  //function that shows the name of the selected interviewer
   const showName = () => {
     if (props.selected) {
       return props.name;

@@ -9,7 +9,8 @@ import Error from "./Error";
 import useVisualMode from "hooks/useVisualMode";
 
 import "components/Appointment/styles.scss";
-// mode constants
+
+// mode constants for transitions()
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
@@ -21,12 +22,11 @@ const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
-  //useVisualCode initializes with the strings
-
+  //imports current state transition and back functions
   const { mode, transition, back } = useVisualMode(
-    props.interview ? SHOW : EMPTY //how does SHOW AND EMPTY HAPPEN
+    props.interview ? SHOW : EMPTY
   );
-
+  // function that takes in student name and interviewer and saves the appointment it runs the transition function as well to set the mode state
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -40,7 +40,7 @@ export default function Appointment(props) {
         transition(ERROR_SAVE, true);
       });
   }
-
+  // function that takes in student name and interviewer and deletes the appointment it runs the transition function as well to set the mode state
   function deelete() {
     transition(DELETING);
     props

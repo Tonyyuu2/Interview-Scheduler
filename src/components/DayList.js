@@ -2,6 +2,7 @@ import React from "react";
 import DayListItem from "./DayListItem";
 
 function DayList(props) {
+  //takes in the days array and gets day object to pass props to DayListItem
   const dayList = props.days.map((day) => {
     return (
       <DayListItem

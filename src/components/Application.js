@@ -1,22 +1,29 @@
 import React from "react";
 
 import DayList from "./DayList";
-import "components/Application.scss";
 import Appointment from "components/Appointment";
+
 import {
   getAppointmentsForDay,
   getInterview,
   getInterviewersForDay,
 } from "helpers/selectors";
+
 import useApplicationData from "hooks/useApplicationData";
+
+import "components/Application.scss";
 
 export default function Application(props) {
   const { state, setDay, bookInterview, cancelInterview } =
     useApplicationData();
 
+  //returns array of interviewers
   const interviewers = getInterviewersForDay(state, state.day);
+
+  //returns array of appointments for each day
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
+  //maps over appointments for each day and populates Appointment component with props
   const appointmentList = dailyAppointments.map((appointment) => {
     return (
       <Appointment
@@ -31,6 +38,7 @@ export default function Application(props) {
     );
   });
 
+  //JSX for application landing page
   return (
     <main className="layout">
       <section className="sidebar">
@@ -50,7 +58,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {appointmentList} {/* component */}
+        {appointmentList}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
