@@ -12,7 +12,7 @@ export function getAppointmentsForDay(state, day) {
   });
 
   return stateAppointments;
-}//function that returns an array of objects of all the appointments for a certain weekday
+} //function that returns an array of objects of all the appointments for a certain weekday
 
 export function getInterview(state, interview) {
   if (interview === null) {
@@ -25,7 +25,7 @@ export function getInterview(state, interview) {
   };
 
   return interviewz;
-}//function that creates a new object that takes in the student and interviewer ID
+} //function that creates a new object that takes in the student and interviewer ID
 
 export function getInterviewersForDay(state, day) {
   const daysObject = state.days.find((dai) => dai.name === day);
@@ -41,4 +41,4 @@ export function getInterviewersForDay(state, day) {
   });
 
   return stateInterviewers;
-}//function that returns an array of objects of all the interviewers for a certain weekday
+} //function that returns an array of objects of all the interviewers for a certain weekday

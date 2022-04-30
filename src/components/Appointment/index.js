@@ -42,7 +42,7 @@ export default function Appointment(props) {
   }
   // function that takes in student name and interviewer and deletes the appointment it runs the transition function as well to set the mode state
   function deelete() {
-    transition(DELETING);
+    transition(DELETING, true);
     props
       .cancelInterview(props.id)
       .then(() => transition(EMPTY))
